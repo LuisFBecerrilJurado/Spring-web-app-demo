@@ -2,10 +2,13 @@ package com.ibm.academy.microservice.springwebapplication.service;
 
 
 import com.ibm.academy.microservice.springwebapplication.model.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 import java.util.List;
 
-
+@Service
 public class ItemServiceImp implements ItemService {
 
     private static List<Item> itemList (){
@@ -20,6 +23,14 @@ public class ItemServiceImp implements ItemService {
 
     @Override
     public List<Item> getAllItems() {
-        return null;
+        return itemList();
+    }
+
+    @Override
+    public Item getItemById(Integer itemId) {
+        return itemList().stream().
+                filter(item -> item.getItemId().equals(itemId))
+                .findFirst()
+                .orElse(null);
     }
 }
