@@ -7,4 +7,6 @@ import java.util.List;
 public interface ItemService {
     public List<Item> getAllItems ();
     public Item getItemById(Integer itemId);
+
+    public void createItem(Item item);
 }
