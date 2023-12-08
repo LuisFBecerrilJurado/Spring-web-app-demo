@@ -1,15 +1,15 @@
 package com.ibm.academy.microservice.springwebapplication.model;
 
-public class item {
+public class Item {
     private Integer itemId;
     private String itemName;
     private String itemDescription;
     private String itemNumber;
 
-    public item() {
+    public Item() {
     }
 
-    public item(Integer itemId, String itemName, String itemDescription, String itemNumber) {
+    public Item(Integer itemId, String itemName, String itemDescription, String itemNumber) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
