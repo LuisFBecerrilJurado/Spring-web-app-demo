@@ -4,6 +4,7 @@ import com.ibm.academy.microservice.springwebapplication.model.Item;
 import com.ibm.academy.microservice.springwebapplication.service.ItemService;
 import com.ibm.academy.microservice.springwebapplication.service.ItemServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.ConditionalOnRepositoryType;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +58,16 @@ public class ItemController {
             return new ResponseEntity<>(sb,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(item,HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Object> createItem(@RequestBody Item item){
+        //Validacion
+
+        //Servicio
+        itemService.createItem(item);
+
+        //Mensaje
+        return new ResponseEntity<>(item,HttpStatus.CREATED);
     }
 }
