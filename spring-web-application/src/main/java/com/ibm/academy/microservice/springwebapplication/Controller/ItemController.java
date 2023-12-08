@@ -43,6 +43,19 @@ public class ItemController {
             return new ResponseEntity<>(sb,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(item,HttpStatus.OK);
+    }
 
+    @GetMapping("/{itemId}")
+    public ResponseEntity<Object> getItemByPathItemId(@PathVariable Integer itemId){
+        //Validacion
+        System.out.printf("Param Request id -->{%s}",itemId);
+        //Servicio
+        Item item = itemService.getItemById(itemId);
+        //Mensaje
+        if(item == null){
+            String sb = "Item con el id: " + itemId + " no se encuentra en la lista";
+            return new ResponseEntity<>(sb,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(item,HttpStatus.OK);
     }
 }
