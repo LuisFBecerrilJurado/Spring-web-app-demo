@@ -17,8 +17,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/v1/item")
-@Service
 public class ItemController {
+
     @Autowired
     ItemServiceImp itemService;
     @GetMapping("/")
@@ -26,11 +26,12 @@ public class ItemController {
         System.out.printf("Header request uui -->{%s}",uuid);
         //Capa Servicio
         List<Item> itemList = itemService.getAllItems();
-
         //Regresar Mensaje
         HttpHeaders headers = new HttpHeaders();
         headers.add("uuid",uuid);
         headers.add("ControllerService", ItemController.class.getName());
-        return new ResponseEntity<>(itemList, headers, HttpStatus.OK);
+        return new ResponseEntity<>(itemList,headers,HttpStatus.OK);
     }
+
+
 }
