@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -61,7 +62,7 @@ public class ItemController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Object> createItem(@RequestBody Item item){
+    public ResponseEntity<Object> createItem(@Valid @RequestBody Item item){
         //Validacion
 
         //Servicio

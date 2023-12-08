@@ -1,10 +1,24 @@
 package com.ibm.academy.microservice.springwebapplication.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Item {
+
+    @NotNull
     private Integer itemId;
+
+    @NotNull
+    @NotBlank
     private String itemName;
+
+    @NotNull
     private String itemDescription;
+
+    @NotNull
+    @NotBlank
     private String itemNumber;
+
 
     public Item() {
     }
