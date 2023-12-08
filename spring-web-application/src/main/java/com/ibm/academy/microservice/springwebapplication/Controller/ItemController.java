@@ -8,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,8 @@ public class ItemController {
     ItemServiceImp itemService;
     @GetMapping("/")
     public ResponseEntity<List<Item>> getAllItems(@RequestHeader String uuid){
-        System.out.printf("Header request uui -->{%s}",uuid);
+        //Validacion
+        System.out.printf("Header Request uui -->{%s}",uuid);
         //Capa Servicio
         List<Item> itemList = itemService.getAllItems();
         //Regresar Mensaje
@@ -33,5 +31,18 @@ public class ItemController {
         return new ResponseEntity<>(itemList,headers,HttpStatus.OK);
     }
 
+    @GetMapping("/getItem")
+    public ResponseEntity<Object> getItemByItemId(@RequestParam(name = "item_id") Integer itemId){
+        //Validacion
+        System.out.printf("Param Request id -->{%s}",itemId);
+        //Servicio
+        Item item = itemService.getItemById(itemId);
+        //Mensaje
+        if(item == null){
+            String sb = "Item con el id: " + itemId + " no se encuentra en la lista";
+            return new ResponseEntity<>(sb,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(item,HttpStatus.OK);
 
+    }
 }
